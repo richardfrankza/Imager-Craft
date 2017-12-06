@@ -261,6 +261,13 @@ class ImagerService extends BaseApplicationComponent
         
         // get pathsmodel for image
         $pathsModel = new Imager_ImagePathsModel($image);
+        
+        // use a fallback image if the file does not exist
+
+        if (!IOHelper::fileExists($pathsModel->sourcePath . $pathsModel->sourceFilename) && craft()->imager->getSetting('useFallBackImage')===true) {
+          $fallBackImagePath = craft()->imager->getSetting('fallBackImagePath') ? craft()->imager->getSetting('fallBackImagePath') : "https://dummyimage.com/600x400/000/fff";
+          $pathsModel = new Imager_ImagePathsModel($fallBackImagePath);
+        }
 
         // create imagine instance
         $this->imagineInstance = $this->_createImagineInstance();

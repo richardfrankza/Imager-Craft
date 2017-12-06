@@ -125,6 +125,9 @@ class Imager_ConfigModel extends BaseModel
           'curlOptions' => array(AttributeType::Mixed),
           'runTasksImmediatelyOnAjaxRequests' => array(AttributeType::Bool),
           'clearKey' => array(AttributeType::String),
+          'useFallBackImage' => array(AttributeType::Bool),
+          'fallBackImagePath' => array(AttributeType::String)
+
         );
     }
 
